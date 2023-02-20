@@ -198,15 +198,15 @@ const NavBar: Component = () => {
                   href="counter"
                   class={`${
                     isActive("/counter") && "bg-gray-900"
-                  } rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white`}
+                  } block rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white`}
                 >
-                  counter example
+                  Counter example
                 </A>
                 <A
                   href="query_example"
                   class={`${
                     isActive("/query_example") && "bg-gray-900"
-                  } rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white`}
+                  } block rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white`}
                 >
                   Query example
                 </A>

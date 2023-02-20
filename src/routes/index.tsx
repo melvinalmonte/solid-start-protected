@@ -17,9 +17,9 @@ export default function Home() {
           <div class="flex h-full items-center justify-center">
             <div class="text-white">
               <h2 class="mb-4 text-4xl font-semibold">Private routes tester</h2>
-              <h4 class="mb-6 text-xl font-semibold">
+              <h3 class="mb-6 text-xl font-semibold">
                 A small reference on how private routes work with SolidJS
-              </h4>
+              </h3>
               <A
                 class="mb-1 inline-block rounded border-2 border-gray-200 px-7 py-3 text-sm font-medium uppercase leading-snug text-gray-200 transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
                 href="/foo"
