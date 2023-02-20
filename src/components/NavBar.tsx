@@ -78,7 +78,7 @@ const NavBar: Component = () => {
                 <A
                   href="/"
                   class={`${
-                    isActive("/home") && "bg-gray-900"
+                    isActive("/") && "bg-gray-900"
                   } rounded-md px-3 py-2 text-sm font-medium text-white`}
                   aria-current="page"
                 >
@@ -168,7 +168,7 @@ const NavBar: Component = () => {
             <A
               href="/"
               class={`${
-                isActive("/home") && "bg-gray-900"
+                isActive("/") && "bg-gray-900"
               }  block rounded-md  px-3 py-2 text-base font-medium text-white`}
               aria-current="page"
             >
