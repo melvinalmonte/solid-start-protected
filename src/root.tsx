@@ -1,5 +1,6 @@
 import "./root.css";
 
+import { QueryClient, QueryClientProvider } from "@tanstack/solid-query";
 import {
   Body,
   ErrorBoundary,
@@ -13,14 +14,23 @@ import {
   Title
 } from "solid-start";
 // @refresh reload
-import { createSignal, Suspense } from "solid-js";
+import { createEffect, Suspense } from "solid-js";
 
 import { AuthContext } from "./auth/auth";
 import NavBar from "./components/NavBar";
 import Protected from "./components/Protected";
+import useSession from "./utils/session";
+
+const queryClient = new QueryClient();
 
 export default function Root() {
-  const [isAuthed, setIsAuthed] = createSignal(false);
+  const { isAuthed, isTokenPresent, authenticateUser, deAuthenticateUser } = useSession();
+  createEffect(() => {
+    // this is where we check if our session value is present
+    isTokenPresent();
+  });
+
+  console.log("isAuthed", isAuthed());
 
   // This is where we set our functions for the auth context
   // isAuthed is a signal that we can use to check if the user is logged in
@@ -28,8 +38,8 @@ export default function Root() {
   // we pass our auth context to the AuthContext provider so that we can use it in our components
   const authContext = {
     isAuthed,
-    login: () => setIsAuthed(true),
-    logout: () => setIsAuthed(false)
+    login: () => authenticateUser(),
+    logout: () => deAuthenticateUser()
   };
 
   return (
@@ -42,14 +52,16 @@ export default function Root() {
       <Body>
         <Suspense>
           <ErrorBoundary>
-            <AuthContext.Provider value={authContext}>
-              <NavBar />
-              <Routes>
-                <Route path="" component={Protected}>
-                  <FileRoutes />
-                </Route>
-              </Routes>
-            </AuthContext.Provider>
+            <QueryClientProvider client={queryClient}>
+              <AuthContext.Provider value={authContext}>
+                <NavBar />
+                <Routes>
+                  <Route path="" component={Protected}>
+                    <FileRoutes />
+                  </Route>
+                </Routes>
+              </AuthContext.Provider>
+            </QueryClientProvider>
           </ErrorBoundary>
         </Suspense>
         <Scripts />
