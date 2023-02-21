@@ -13,22 +13,19 @@ import {
   Scripts,
   Title
 } from "solid-start";
-// @refresh reload
-import { createEffect, Suspense } from "solid-js";
 
 import { AuthContext } from "./auth/auth";
 import NavBar from "./components/NavBar";
 import Protected from "./components/Protected";
+// @refresh reload
+import { Suspense } from "solid-js";
 import useSession from "./utils/session";
 
 const queryClient = new QueryClient();
 
 export default function Root() {
-  const { isAuthed, isTokenPresent, authenticateUser, deAuthenticateUser } = useSession();
-  createEffect(() => {
-    // this is where we check if our session value is present
-    isTokenPresent();
-  });
+  const { isAuthed, authenticateUser, deAuthenticateUser } = useSession();
+
   // This is where we set our functions for the auth context
   // isAuthed is a signal that we can use to check if the user is logged in
   // login and logout are functions that we can use to set the isAuthed signal
