@@ -29,9 +29,6 @@ export default function Root() {
     // this is where we check if our session value is present
     isTokenPresent();
   });
-
-  console.log("isAuthed", isAuthed());
-
   // This is where we set our functions for the auth context
   // isAuthed is a signal that we can use to check if the user is logged in
   // login and logout are functions that we can use to set the isAuthed signal
